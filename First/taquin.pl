@@ -200,9 +200,9 @@ heuristique(U,H) :-
    heuristique1(U,H) :- final_state(F), findall( P , (malplace(P,U,F) , not(vide==P)) , L), length(L,H).
    
      heuristique1bis([], 0).
-     heuristique1bis(U,H) :- final_state(F),inter(U,F,H,[]).
+     heuristique1bis(U,H) :- final_state(F),inter(U,F,[],Res).
      inter([],[],L,Res) :- sumlist(L,Res).
-     inter([UL|UR],[FL|FR],L,Res) :- comp(D,UL,FL), inter(UR,FR,[D|L]).
+     inter([UL|UR],[FL|FR],L,Res) :- comp(D,UL,FL),display(D), inter(UR,FR,[D|L],Res).
      comp(0,[],[]).
      comp(D2,[E1|R1],[E2|R2]) :- E1\=E2, comp(D,R1,R2),D2 is D + 1.  
       comp(D,[E1|R1],[E1|R2]) :- comp(D,R1,R2).           
